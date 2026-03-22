@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.multiple-paste"
+          path="/org/gnome/shell/extensions/multiple-paste/">
+    <key name="max-entries" type="i">
+      <default>15</default>
+      <summary>Maximum number of clipboard history entries</summary>
+      <description>The maximum number of clipboard entries to store in history.</description>
+    </key>
+  </schema>
+</schemalist>

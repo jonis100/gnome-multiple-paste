@@ -1,0 +1,16 @@
+.mp-panel-menu {
+    max-width: 600px;
+}
+
+.mp-history-scroll {
+    max-height: 500px;
+}
+
+.mp-remove-btn .system-status-icon {
+    icon-size: 16px;
+    padding: 4px 12px;
+}
+
+.mp-remove-box {
+    spacing: 10px;
+}
