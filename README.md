@@ -2,6 +2,16 @@
 
 A lightweight clipboard history manager for GNOME Shell.
 
+## Screenshots
+
+![Clipboard history popup](screenshots/history.png)
+
+*Clipboard history popup — click any entry to copy it back to the clipboard, or delete individual items.*
+
+![Settings dialog](screenshots/settings.png)
+
+*Settings — configure the maximum number of entries and the toggle menu shortcut.*
+
 - View and configure the number of saved clipboard items (default: 15)
 - Click an item to restore it to the clipboard
 - Delete individual items or clear all history
