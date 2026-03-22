@@ -2,7 +2,7 @@
   "name": "Multiple Paste",
   "description": "A lightweight clipboard history manager for GNOME Shell",
   "uuid": "multiple-paste@jonis100.github.io",
-  "url": "https://github.com/jonis100/multiple-paste",
+  "url": "https://github.com/jonis100/gnome-multiple-paste",
   "shell-version": [
     "46",
     "47",

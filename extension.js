@@ -162,7 +162,7 @@ const IndicatorButton = GObject.registerClass(
 
             this.menu.connect('open-state-changed', (_m, open) => {
                 if (open)
-                    this._history.scroll.vscroll.adjustment.value = 0;
+                    this._history.scroll.vadjustment.value = 0;
             });
 
             // Clipboard
@@ -171,17 +171,33 @@ const IndicatorButton = GObject.registerClass(
                 this._watcher.read(text => this._onNewClip(text));
             });
 
+            // Keyboard shortcuts
+            this._bindKeys();
+
             // Restore persisted state, then load cache
             this._restoreState();
             this._loadFromDisk();
         }
 
         destroy() {
+            this._unbindKeys();
             this._saveState();
             this._history.items.box.disconnect(this._removedSig);
             this._watcher.disconnect(this._watcherSig);
             this._watcher.dispose();
             super.destroy();
+        }
+
+        // --- Keyboard shortcuts -------------------------------------------
+
+        _bindKeys() {
+            const mode = Shell.ActionMode.NORMAL | Shell.ActionMode.OVERVIEW;
+            Main.wm.addKeybinding('toggle-menu', this._settings,
+                Meta.KeyBindingFlags.NONE, mode, () => this.menu.toggle());
+        }
+
+        _unbindKeys() {
+            Main.wm.removeKeybinding('toggle-menu');
         }
 
         // --- State persistence across lock-screen re-enable cycles --------
