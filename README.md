@@ -1,6 +1,6 @@
 # Multiple Paste
 
-A lightweight clipboard history manager for GNOME Shell.
+A lightweight clipboard history manager for GNOME Shell 46–48.
 
 ## Screenshots
 
