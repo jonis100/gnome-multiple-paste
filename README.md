@@ -1,32 +1,31 @@
 # Multiple Paste
 
-A lightweight clipboard history manager for GNOME Shell 46–48.
+A lightweight clipboard history manager for GNOME Shell.
 
 ## Screenshots
 
 ![Clipboard history popup](screenshots/history.png)
 
-*Clipboard history popup — click any entry to copy it back to the clipboard, or delete individual items.*
+_Clipboard history popup — click any entry to copy it back to the clipboard, or delete individual items._
 
 ![Settings dialog](screenshots/settings.png)
 
-*Settings — configure the maximum number of entries and the toggle menu shortcut.*
+_Settings — configure the maximum number of entries and the toggle menu shortcut._
 
-- View and configure the number of saved clipboard items (default: 15)
+- View and configure the number of saved clipboard items (default: 30)
 - Click an item to restore it to the clipboard
 - Delete individual items or clear all history
 - History persists across sessions via a cache file
 - Hides automatically when clipboard history is empty
-- Skips sensitive clipboard content (e.g. password managers)
 
 ## Settings
 
 Open the **Extensions** app and click the gear icon next to Multiple Paste to configure:
 
-| Setting | Default | Description |
-|---|---|---|
-| Maximum entries | 15 | Number of clipboard items kept in history (1–100) |
-| Toggle menu | Super+T | Open or close the history menu |
+| Setting         | Default | Description                                       |
+| --------------- | ------- | ------------------------------------------------- |
+| Maximum entries | 30      | Number of clipboard items kept in history (1–100) |
+| Toggle menu     | Super+T | Open or close the history menu                    |
 
 Click the shortcut row to capture a new key combination, or clear it with the ✕ button. Changes take effect immediately without restarting.
 
@@ -34,7 +33,7 @@ Click the shortcut row to capture a new key combination, or clear it with the �
 
 ### From extensions.gnome.org
 
-Coming soon.
+Install the extension from the [official gnome extension page](https://extensions.gnome.org/extension/9567/multiple-paste/)
 
 ### Manual
 

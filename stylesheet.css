@@ -1,9 +1,19 @@
 .mp-panel-menu {
-    max-width: 600px;
+    width: 450px;
 }
 
 .mp-history-scroll {
-    max-height: 500px;
+    height: 400px;
+}
+
+.mp-search-entry {
+    margin: 8px;
+}
+
+.mp-no-results {
+    padding: 12px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .mp-remove-btn .system-status-icon {
