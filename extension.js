@@ -158,8 +158,9 @@ const IndicatorButton = GObject.registerClass(
         can_focus: true,
         track_hover: true,
       });
-      this._searchEntry.clutter_text.connect("text-changed", () =>
-        this._filterRows(),
+      this._searchSig = this._searchEntry.clutter_text.connect(
+        "text-changed",
+        () => this._filterRows(),
       );
       const searchSection = new PopupMenu.PopupMenuSection();
       searchSection.actor.add_child(this._searchEntry);
@@ -176,7 +177,9 @@ const IndicatorButton = GObject.registerClass(
 
       // Menu layout
       this._history = new HistorySection();
-      this._history.items.box.connect("child-added", () => this._refresh());
+      this._addedSig = this._history.items.box.connect("child-added", () =>
+        this._refresh(),
+      );
       this._removedSig = this._history.items.box.connect("child-removed", () =>
         this._refresh(),
       );
@@ -192,7 +195,7 @@ const IndicatorButton = GObject.registerClass(
       });
       this.menu.addMenuItem(clearBtn);
 
-      this.menu.connect("open-state-changed", (_m, open) => {
+      this._menuStateSig = this.menu.connect("open-state-changed", (_m, open) => {
         if (open) {
           this._searchEntry.set_text("");
           this._history.scroll.vadjustment.value = 0;
@@ -205,7 +208,7 @@ const IndicatorButton = GObject.registerClass(
       });
 
       // Redirect stray key presses back to the search entry
-      this.menu.actor.connect("key-press-event", (_actor, event) => {
+      this._keyPressSig = this.menu.actor.connect("key-press-event", (_actor, event) => {
         const sym = event.get_key_symbol();
         // Ignore navigation / modifier-only keys
         if (
@@ -243,7 +246,11 @@ const IndicatorButton = GObject.registerClass(
     destroy() {
       this._unbindKeys();
       this._saveState();
+      this._searchEntry.clutter_text.disconnect(this._searchSig);
+      this._history.items.box.disconnect(this._addedSig);
       this._history.items.box.disconnect(this._removedSig);
+      this.menu.disconnect(this._menuStateSig);
+      this.menu.actor.disconnect(this._keyPressSig);
       this._watcher.disconnect(this._watcherSig);
       this._watcher.dispose();
       super.destroy();
