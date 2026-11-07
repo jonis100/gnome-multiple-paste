@@ -200,7 +200,7 @@ const IndicatorButton = GObject.registerClass(
           this._searchEntry.set_text("");
           this._history.scroll.vadjustment.value = 0;
           // Defer focus so the menu is fully mapped before we grab input
-          Meta.later_add(Meta.LaterType.BEFORE_REDRAW, () => {
+          global.compositor.get_laters().add(Meta.LaterType.BEFORE_REDRAW, () => {
             global.stage.set_key_focus(this._searchEntry.clutter_text);
             return GLib.SOURCE_REMOVE;
           });
