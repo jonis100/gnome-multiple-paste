@@ -200,10 +200,14 @@ const IndicatorButton = GObject.registerClass(
           this._searchEntry.set_text("");
           this._history.scroll.vadjustment.value = 0;
           // Defer focus so the menu is fully mapped before we grab input
-          global.compositor.get_laters().add(Meta.LaterType.BEFORE_REDRAW, () => {
-            global.stage.set_key_focus(this._searchEntry.clutter_text);
-            return GLib.SOURCE_REMOVE;
-          });
+          if (this._focusLaterId) return;
+          this._focusLaterId = global.compositor
+            .get_laters()
+            .add(Meta.LaterType.BEFORE_REDRAW, () => {
+              this._focusLaterId = 0;
+              global.stage.set_key_focus(this._searchEntry.clutter_text);
+              return GLib.SOURCE_REMOVE;
+            });
         }
       });
 
@@ -244,6 +248,10 @@ const IndicatorButton = GObject.registerClass(
     }
 
     destroy() {
+      if (this._focusLaterId) {
+        global.compositor.get_laters().remove(this._focusLaterId);
+        this._focusLaterId = 0;
+      }
       this._unbindKeys();
       this._saveState();
       this._searchEntry.clutter_text.disconnect(this._searchSig);
